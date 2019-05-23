@@ -1,8 +1,10 @@
 
 class Grid
+    attr_accessor :can_choose
     attr_accessor :grid
 
-    def initialize
+    def initialize()
+        @can_choose = [1,2,3,4,5,6,7,8,9]
         @grid = "
                 |----|----|----|   
                 |  1 |  2 |  3 |
@@ -29,12 +31,14 @@ class Game < Grid
         puts "You're the first player."
             until @@player_one_win || @@player_two_win
                 puts "Player One, make your choice."
+                p @can_choose
                 puts @grid
                 player_one_choice()
                 puts
                 @@player_one_turns +=1
                 break if @@player_one.length == 5
                 puts "Player Two, make your choice."
+                p @can_choose
                 puts @grid
                 player_two_choice()
                 puts
@@ -42,7 +46,7 @@ class Game < Grid
     end
 
     def player_one_choice()
-        @@player_one << gets.chomp.to_i
+        @@player_one << @can_choose.delete(gets.chomp.to_i)
         p @@player_one
         if @@win.include?(@@player_one)
             puts "The game has ended. Player One has won!"
@@ -50,7 +54,7 @@ class Game < Grid
     end
 
     def player_two_choice()
-        @@player_two << gets.chomp.to_i
+        @@player_two << @can_choose.delete(gets.chomp.to_i)
         p @@player_two
         if @@win.include?(@@player_two)
             puts "The game has ended. Player Two has won!"
