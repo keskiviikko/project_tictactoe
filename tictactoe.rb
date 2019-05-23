@@ -51,14 +51,14 @@ class Game < Grid
 
     def player_one_choice()
         @@player_one << gets.chomp
-        if @@player_one.include?(@@win)
+        if @@win.include?(@@player_one)
             puts "The game has ended. Player One has won!"
         end
     end
 
     def player_two_choice()
         @@player_two << gets.chomp
-        if @@player_two.include?(@@win)
+        if @@win.include?(@@player_two)
             puts "The game has ended. Player Two has won!"
         end
     end
