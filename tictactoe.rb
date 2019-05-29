@@ -1,32 +1,42 @@
 
 class Grid
-    require 'set'
-
     WINNING_COMBOS = [
         [1,2,3],[4,5,6],[7,8,9],
         [1,4,7],[2,5,8],[3,6,9],
         [1,5,9],[3,5,7]
-    ].map(&:to_set)
+    ]
     attr_accessor :possible_choice
+    attr_accessor :positions
     attr_accessor :grid
 
     def initialize
         @possible_choice = [1,2,3,4,5,6,7,8,9]
+        @positions = {
+            pos_one: 1,
+            pos_two: 2,
+            pos_three: 3,
+            pos_four: 4,
+            pos_five: 5,
+            pos_six: 6,
+            pos_seven: 7,
+            pos_eight: 8,
+            pos_nine: 9
+        }
         @grid = "
                 |----|----|----|   
-                |  1 |  2 |  3 |
+                |  #{@positions[:pos_one]} |  #{@positions[:pos_two]} |  #{@positions[:pos_three]} |
                 |----|----|----|
-                |  4 |  5 |  6 |
+                |  #{@positions[:pos_four]} |  #{@positions[:pos_five]} |  #{@positions[:pos_six]} |
                 |----|----|----|
-                |  7 |  8 |  9 |
+                |  #{@positions[:pos_seven]} |  #{@positions[:pos_eight]} |  #{@positions[:pos_nine]} |
                 |----|----|----|
                 "
     end
 end
 
 class Game < Grid
-    @@player_one = Set.new
-    @@player_two = Set.new
+    @@player_one = Array.new
+    @@player_two = Array.new
 
     def game
         puts
@@ -56,7 +66,7 @@ class Game < Grid
         p @possible_choice
         puts @grid
         @@player_one << @possible_choice.delete(gets.chomp.to_i)
-        p @@player_one
+        p "Player One has chosen: #{@@player_one}"
     end
 
     def player_two_turn()
@@ -64,11 +74,15 @@ class Game < Grid
         p @possible_choice
         puts @grid
         @@player_two << @possible_choice.delete(gets.chomp.to_i)
-        p @@player_two
+        p "Player Two has chosen: #{@@player_two}"
+    end
+
+    def add_markers
+        
     end
 
     def has_won?(player)
-        WINNING_COMBOS.any? { |combo| combo <= player}
+        WINNING_COMBOS.any? { |combo| (player & combo).size == combo.size}
     end
 end
 
