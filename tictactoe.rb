@@ -6,31 +6,26 @@ class Grid
         [1,5,9],[3,5,7]
     ]
     attr_accessor :possible_choice
-    attr_accessor :positions
+    attr_accessor :marker_positions
     attr_accessor :grid
 
     def initialize
         @possible_choice = [1,2,3,4,5,6,7,8,9]
-        @positions = {
-            pos_one: 1,
-            pos_two: 2,
-            pos_three: 3,
-            pos_four: 4,
-            pos_five: 5,
-            pos_six: 6,
-            pos_seven: 7,
-            pos_eight: 8,
-            pos_nine: 9
-        }
+        @marker_positions = [1,2,3,4,5,6,7,8,9]
         @grid = "
                 |----|----|----|   
-                |  #{@positions[:pos_one]} |  #{@positions[:pos_two]} |  #{@positions[:pos_three]} |
+                |  #{@marker_positions[0]} |  #{@marker_positions[1]} |  #{@marker_positions[2]} |
                 |----|----|----|
-                |  #{@positions[:pos_four]} |  #{@positions[:pos_five]} |  #{@positions[:pos_six]} |
+                |  #{@marker_positions[3]} |  #{@marker_positions[4]} |  #{@marker_positions[5]} |
                 |----|----|----|
-                |  #{@positions[:pos_seven]} |  #{@positions[:pos_eight]} |  #{@positions[:pos_nine]} |
+                |  #{@marker_positions[6]} |  #{@marker_positions[7]} |  #{@marker_positions[8]} |
                 |----|----|----|
                 "
+    end
+    
+    def add_markers
+        
+        puts @grid
     end
 end
 
@@ -50,7 +45,7 @@ class Game < Grid
                     puts
                     return
                 end
-            break if @@player_one.length == 5
+            break if @@player_one.length == 5 || @@player_one.include?(nil)
             player_two_turn()
             puts
                 if has_won?(@@player_two)
@@ -64,7 +59,7 @@ class Game < Grid
     def player_one_turn()
         puts "Player One, make your choice:"
         p @possible_choice
-        puts @grid
+        add_markers
         @@player_one << @possible_choice.delete(gets.chomp.to_i)
         p "Player One has chosen: #{@@player_one}"
     end
@@ -72,13 +67,9 @@ class Game < Grid
     def player_two_turn()
         puts "Player Two, make your choice:"
         p @possible_choice
-        puts @grid
+        add_markers
         @@player_two << @possible_choice.delete(gets.chomp.to_i)
         p "Player Two has chosen: #{@@player_two}"
-    end
-
-    def add_markers
-        
     end
 
     def has_won?(player)
