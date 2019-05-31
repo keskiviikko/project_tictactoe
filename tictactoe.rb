@@ -10,7 +10,7 @@ class Grid
 
     def initialize
         @possible_choice = [1,2,3,4,5,6,7,8,9]
-        @marker_positions = [1,2,3,4,5,6,7,8,9]
+        @marker_positions = [7,8,9,4,5,6,1,2,3]
     end
     
     def grid
@@ -79,13 +79,13 @@ class Game < Grid
 
     def add_x
         if @@player_one.include?(1)
-            @marker_positions[0] = "X"
+            @marker_positions[6] = "X"
         end
         if @@player_one.include?(2)
-            @marker_positions[1] = "X"
+            @marker_positions[7] = "X"
         end
         if @@player_one.include?(3)
-            @marker_positions[2] = "X"
+            @marker_positions[8] = "X"
         end
         if @@player_one.include?(4)
             @marker_positions[3] = "X"
@@ -97,25 +97,25 @@ class Game < Grid
             @marker_positions[5] = "X"
         end
         if @@player_one.include?(7)
-            @marker_positions[6] = "X"
+            @marker_positions[0] = "X"
         end
         if @@player_one.include?(8)
-            @marker_positions[7] = "X"
+            @marker_positions[1] = "X"
         end
         if @@player_one.include?(9)
-            @marker_positions[8] = "X"
+            @marker_positions[2] = "X"
         end
     end
 
     def add_o
         if @@player_two.include?(1)
-            @marker_positions[0] = "O"
+            @marker_positions[6] = "O"
         end
         if @@player_two.include?(2)
-            @marker_positions[1] = "O"
+            @marker_positions[7] = "O"
         end
         if @@player_two.include?(3)
-            @marker_positions[2] = "O"
+            @marker_positions[8] = "O"
         end
         if @@player_two.include?(4)
             @marker_positions[3] = "O"
@@ -127,13 +127,13 @@ class Game < Grid
             @marker_positions[5] = "O"
         end
         if @@player_two.include?(7)
-            @marker_positions[6] = "O"
+            @marker_positions[0] = "O"
         end
         if @@player_two.include?(8)
-            @marker_positions[7] = "O"
+            @marker_positions[1] = "O"
         end
         if @@player_two.include?(9)
-            @marker_positions[8] = "O"
+            @marker_positions[2] = "O"
         end
     end
 
