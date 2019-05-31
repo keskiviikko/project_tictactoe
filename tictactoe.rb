@@ -61,7 +61,6 @@ class Game < Grid
 
     def player_one_turn()
         puts "Player One, make your choice:"
-        p @possible_choice
         add_o
         grid
         @@player_one << @possible_choice.delete(gets.chomp.to_i)
@@ -70,7 +69,6 @@ class Game < Grid
 
     def player_two_turn()
         puts "Player Two, make your choice:"
-        p @possible_choice
         add_x
         grid
         @@player_two << @possible_choice.delete(gets.chomp.to_i)
